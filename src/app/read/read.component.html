@@ -1,0 +1,48 @@
+<mat-card class="column-card">
+
+  <mat-card-header>
+    <mat-card-title>
+      Read
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="content">
+
+    <ng-container *ngIf="(places$ | async) as places">
+
+      <div>
+        <mat-card *ngFor="let place of places" class="place-card">
+
+          <mat-card-header>
+            <mat-card-title>
+              {{ place.locationName }}
+              <div class="description">
+                {{ place.description }}
+              </div>
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="content">
+            <ul>
+              <li>
+                Latitude:
+                <span class="label">{{ place.latitude }}</span>
+              </li>
+              <li>
+                Longitude:
+                <span class="label">{{ place.longitude }}</span>
+              </li>
+            </ul>
+
+          </mat-card-content>
+
+        </mat-card>
+
+
+      </div>
+
+    </ng-container>
+
+  </mat-card-content>
+
+</mat-card>

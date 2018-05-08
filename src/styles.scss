@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+
+$navy-blue: #001525;
+$dull-blue: #203f57;
+$navy-blue-faded: #0015258e;
+
+body {
+  background-color: rgb(174, 199, 207);
+  margin-top: 60px;
+  color: $navy-blue;
+  letter-spacing: 0.01em;
+}
+
+.column-card {
+  background-color: rgb(223, 234, 238);
+}
+
+.navy {
+  color: $navy-blue;
+}
+
+.container {
+  h1 {
+    color: $dull-blue;
+  }
+}
+
+mat-card {
+  color: $navy-blue;
+}
+
+.place-card {
+  margin-bottom: 15px;
+  padding: 10px;
+
+  ul > li {
+    font-size: 12px;
+    line-height: 160%;
+    color: $navy-blue;
+
+    .label {
+      color: #888;
+    }
+  }
+}
+
+.description {
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+}
