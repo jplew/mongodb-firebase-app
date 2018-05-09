@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { PlaceService } from '../services/place.service'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { FormControl } from '@angular/forms'
 import { Observable } from 'rxjs'
-import { Location } from '../interfaces/location'
 
 @Component({
   selector: 'app-read',
@@ -9,10 +8,29 @@ import { Location } from '../interfaces/location'
   styleUrls: ['./read.component.css']
 })
 export class ReadComponent implements OnInit {
-  places$: Observable<Location[]>
-  constructor(private placeService: PlaceService) {}
+  @Input() placesForDropdown$: Observable<Location[]>
+  @Input() places$: Observable<Location[] | Location>
+  @Output() updateSelect = new EventEmitter<string>()
+  @Output() updateSearch = new EventEmitter<string>()
+
+  select = new FormControl()
+  search = new FormControl()
+
+  constructor() {}
 
   ngOnInit() {
-    this.places$ = this.placeService.getAll()
+    this.listenForFormEvents()
+  }
+
+  listenForFormEvents() {
+    this.select.valueChanges.forEach((query: string) => {
+      // this.select.reset()
+      this.updateSelect.emit(query)
+    })
+
+    this.search.valueChanges.forEach((query: string) => {
+      this.select.reset()
+      this.updateSearch.emit(query)
+    })
   }
 }

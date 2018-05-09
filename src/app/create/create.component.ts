@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { PlaceService } from '../services/place.service'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { FormControl } from '@angular/forms'
 import { Observable } from 'rxjs'
-import { Location } from '../interfaces/location'
 
 @Component({
   selector: 'app-create',
@@ -9,10 +8,10 @@ import { Location } from '../interfaces/location'
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  places$: Observable<Location[]>
-  constructor(private placeService: PlaceService) {}
+  @Input() placesForDropdown$: Observable<Location[]>
+  @Input() place$: Observable<Location[] | Location>
 
-  ngOnInit() {
-    this.places$ = this.placeService.getAll()
-  }
+  constructor() {}
+
+  ngOnInit() {}
 }

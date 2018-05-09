@@ -1,47 +1,88 @@
-<mat-card class="column-card">
+<mat-card class="column-card left">
 
   <mat-card-header>
-    <mat-card-title>
-      Read
-    </mat-card-title>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" class="column">
+
+      <div fxFlex="45">
+
+        <ng-container *ngIf="(placesForDropdown$ | async) as places">
+
+          <mat-select [formControl]="select" class="places-select" placeholder="Choose Location">
+            <mat-option>
+              All Locations
+            </mat-option>
+            <mat-option *ngFor="let place of places" [value]="place.locationName">
+              {{ place.locationName }}
+            </mat-option>
+          </mat-select>
+        </ng-container>
+
+      </div>
+
+      <div fxFlex="10" fxFlexAlign="center" style="text-align: center;">
+        or
+      </div>
+
+      <div fxFlex="45">
+        <mat-form-field style="width: 100%">
+          <mat-label>Search</mat-label>
+          <input [formControl]="search" matInput>
+          <button mat-icon-button matSuffix>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+    </div>
   </mat-card-header>
 
   <mat-card-content class="content">
 
-    <ng-container *ngIf="(places$ | async) as places">
 
-      <div>
-        <mat-card *ngFor="let place of places" class="place-card">
+    <ng-container *ngIf="(places$ | async) as places; else loadingOrError">
 
-          <mat-card-header>
-            <mat-card-title>
-              {{ place.locationName }}
-              <div class="description">
-                {{ place.description }}
-              </div>
-            </mat-card-title>
-          </mat-card-header>
+      <mat-card *ngFor="let place of places" class="place-card">
 
-          <mat-card-content class="content">
-            <ul>
-              <li>
-                Latitude:
-                <span class="label">{{ place.latitude }}</span>
-              </li>
-              <li>
-                Longitude:
-                <span class="label">{{ place.longitude }}</span>
-              </li>
-            </ul>
+        <mat-card-header>
+          <mat-card-title>
+            {{ place.locationName }}
+            <div class="description">
+              {{ place.description }}
+            </div>
+          </mat-card-title>
+        </mat-card-header>
 
-          </mat-card-content>
+        <mat-card-content class="content">
+          <ul>
+            <li>
+              Latitude:
+              <span class="label">{{ place.latitude }}</span>
+            </li>
+            <li>
+              Longitude:
+              <span class="label">{{ place.longitude }}</span>
+            </li>
+          </ul>
 
-        </mat-card>
+        </mat-card-content>
 
+      </mat-card>
 
-      </div>
 
     </ng-container>
+
+    <ng-template #loadingOrError>
+
+      <ng-container *ngIf="(loadingError$ | async) as error; else loadingTemplate">
+        No location found named "{{ error }}".
+      </ng-container>
+
+      <ng-template #loadingTemplate>
+        Loading places...
+      </ng-template>
+
+    </ng-template>
 
   </mat-card-content>
 

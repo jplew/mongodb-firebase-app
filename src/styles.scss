@@ -5,14 +5,19 @@ $dull-blue: #203f57;
 $navy-blue-faded: #0015258e;
 
 body {
-  background-color: rgb(174, 199, 207);
+  background-color: rgb(179, 202, 209);
   margin-top: 60px;
   color: $navy-blue;
   letter-spacing: 0.01em;
 }
 
-.column-card {
-  background-color: rgb(223, 234, 238);
+.container {
+  padding: 20px 40px;
+}
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }
 
 .navy {
@@ -26,7 +31,24 @@ body {
 }
 
 mat-card {
-  color: $navy-blue;
+  &.column-card {
+    color: $navy-blue;
+    background-color: rgb(223, 234, 238);
+
+    &.left {
+      padding-top: 10px;
+    }
+  }
+
+  mat-card-header {
+    margin-bottom: 10px;
+  }
+}
+
+mat-card-content.content {
+  mat-select {
+    margin: 15px 0;
+  }
 }
 
 .place-card {
