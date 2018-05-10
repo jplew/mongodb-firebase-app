@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { Location } from '../interfaces/location'
-
+import { Place } from '../interfaces/place'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,11 +9,11 @@ export class PlaceService {
   baseUrl = 'https://us-central1-mongodb-api.cloudfunctions.net/api/places/'
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Location[]> {
-    return this.http.get<Location[]>(this.baseUrl)
+  getAll(): Observable<Place[]> {
+    return this.http.get<Place[]>(this.baseUrl)
   }
 
-  getByName(name: string): Observable<Location> {
-    return this.http.get<Location>(this.baseUrl + name)
+  getByName(name: string): Observable<Place> {
+    return this.http.get<Place>(this.baseUrl + name)
   }
 }

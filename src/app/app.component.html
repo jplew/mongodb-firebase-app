@@ -4,12 +4,16 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" class="coloredcontainer box">
 
+    {{ places$ | async }}
     <div fxFlex>
       <app-read [placesForDropdown$]="placesForDropdown$" [places$]="places$" (updateSelect)="updateFromSelect($event)" (updateSearch)="updateFromSearch($event)"></app-read>
     </div>
 
     <div fxFlex>
-      <app-create [placesForDropdown$]="placesForDropdown$" [place$]="place$" (updateSave)="updateFromSave($event)"></app-create>
+      <app-create [placesForDropdown$]="placesForDropdown$" [selectedPlace$]="places$" (updateSelect)="updateFromSelect($event)"
+        (updateSave)="updateFromSave($event)
+      ">
+      </app-create>
     </div>
 
   </div>

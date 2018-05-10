@@ -1,4 +1,4 @@
-export interface Location {
+export interface Place {
   latitude: number
   longitude: number
   locationName: string

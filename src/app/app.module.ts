@@ -1,13 +1,15 @@
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+
 import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatMenuModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule
 } from '@angular/material'
 import { MatInputModule } from '@angular/material/input'
 import { BrowserModule } from '@angular/platform-browser'
@@ -24,12 +26,14 @@ import { ReadComponent } from './read/read.component'
     HttpClientModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    FormsModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

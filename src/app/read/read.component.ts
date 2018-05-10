@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { Observable } from 'rxjs'
+import { Place } from '../interfaces/place'
 
 @Component({
   selector: 'app-read',
@@ -8,8 +9,8 @@ import { Observable } from 'rxjs'
   styleUrls: ['./read.component.css']
 })
 export class ReadComponent implements OnInit {
-  @Input() placesForDropdown$: Observable<Location[]>
-  @Input() places$: Observable<Location[] | Location>
+  @Input() placesForDropdown$: Observable<Place[]>
+  @Input() places$: Observable<Place[] | Place>
   @Output() updateSelect = new EventEmitter<string>()
   @Output() updateSearch = new EventEmitter<string>()
 
@@ -19,12 +20,12 @@ export class ReadComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.listenForFormEvents()
+    this.listenToFormEvents()
   }
 
-  listenForFormEvents() {
+  listenToFormEvents() {
     this.select.valueChanges.forEach((query: string) => {
-      // this.select.reset()
+      // this.search.reset()
       this.updateSelect.emit(query)
     })
 

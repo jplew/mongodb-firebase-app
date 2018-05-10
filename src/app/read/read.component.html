@@ -42,6 +42,7 @@
 
     <ng-container *ngIf="(places$ | async) as places; else loadingOrError">
 
+      {{ places }}
       <mat-card *ngFor="let place of places" class="place-card">
 
         <mat-card-header>

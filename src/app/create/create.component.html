@@ -1,24 +1,59 @@
 <mat-card class="column-card right">
-
-  <mat-card-header>
-
-    <div fxLayout="row" fxLayoutAlign="end center" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" class="column">
-
-      <div fxFlex="45">
-      </div>
-
-      <div fxFlex="10" fxFlexAlign="center" style="text-align: center;">
-        or
-      </div>
-
-      <div fxFlex="45">
-      </div>
-
-    </div>
-  </mat-card-header>
-
   <mat-card-content class="content">
-    Placeholder
+
+    {{ selectedPlace$ | async }}
+
+    <mat-tab-group class="tab-group" backgroundColor="primary" color="accent" mat-stretch-tabs>
+
+      <mat-tab label="Update">
+        <div class="tab-content">
+
+          <ng-container *ngIf="(placesForDropdown$ | async) as places">
+
+            <mat-select [formControl]="select" class="places-select" placeholder="Choose Location to Update">
+
+              <mat-option>
+                All Locations
+              </mat-option>
+              <mat-option *ngFor="let place of places" [value]="place.locationName">
+                {{ place.locationName }}
+              </mat-option>
+            </mat-select>
+          </ng-container>
+
+          <form [formGroup]="placeForm" class="example-form">
+            <p>
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="locationName" placeholder="Location Name">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="latitude" placeholder="Latitude">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="longitude" placeholder="Longitude">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <textarea matInput formControlName="description" placeholder="Description"></textarea>
+              </mat-form-field>
+            </p>
+
+            <button mat-raised-button color="primary">Save</button>
+
+          </form>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Create">
+        <div class="tab-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
+          vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+          felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum
+          enim, vel tempor sapien arcu a tellus.
+        </div>
+      </mat-tab>
+
+
+    </mat-tab-group>
   </mat-card-content>
 
 </mat-card>

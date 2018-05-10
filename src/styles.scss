@@ -38,6 +38,14 @@ mat-card {
     &.left {
       padding-top: 10px;
     }
+
+    &.right {
+      padding: 0;
+
+      .mat-card-header-text {
+        margin: 0;
+      }
+    }
   }
 
   mat-card-header {
@@ -70,4 +78,23 @@ mat-card-content.content {
   font-size: 12px;
   color: #777;
   margin-top: 10px;
+}
+
+mat-tab-group {
+  mat-tab-body {
+    .tab-content {
+      padding: 30px;
+      line-height: 160%;
+
+      .example-form {
+        min-width: 150px;
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .example-full-width {
+        width: 100%;
+      }
+    }
+  }
 }
