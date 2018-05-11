@@ -9,7 +9,8 @@ import {
   MatIconModule,
   MatMenuModule,
   MatSelectModule,
-  MatTabsModule
+  MatTabsModule,
+  MatButtonToggleModule
 } from '@angular/material'
 import { MatInputModule } from '@angular/material/input'
 import { BrowserModule } from '@angular/platform-browser'
@@ -33,7 +34,8 @@ import { ReadComponent } from './read/read.component'
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

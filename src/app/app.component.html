@@ -4,14 +4,12 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" class="coloredcontainer box">
 
-    {{ places$ | async }}
     <div fxFlex>
-      <app-read [placesForDropdown$]="placesForDropdown$" [places$]="places$" (updateSelect)="updateFromSelect($event)" (updateSearch)="updateFromSearch($event)"></app-read>
+      <app-read [state]="state" [placesSubject]="placesSubject" [places$]="places$" [loadingError$]="loadingError$" (toggleSortOrder)="swapOrder($event)"></app-read>
     </div>
 
     <div fxFlex>
-      <app-create [placesForDropdown$]="placesForDropdown$" [selectedPlace$]="places$" (updateSelect)="updateFromSelect($event)"
-        (updateSave)="updateFromSave($event)
+      <app-create [selectedPlace$]="places$" [placesSubject]="placesSubject" (updateSave)="updateFromSave($event)
       ">
       </app-create>
     </div>

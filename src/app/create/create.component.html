@@ -1,8 +1,6 @@
 <mat-card class="column-card right">
   <mat-card-content class="content">
 
-    {{ selectedPlace$ | async }}
-
     <mat-tab-group class="tab-group" backgroundColor="primary" color="accent" mat-stretch-tabs>
 
       <mat-tab label="Update">
@@ -23,16 +21,16 @@
 
           <form [formGroup]="placeForm" class="example-form">
             <p>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="full-width">
                 <input matInput formControlName="locationName" placeholder="Location Name">
               </mat-form-field>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="full-width">
                 <input matInput formControlName="latitude" placeholder="Latitude">
               </mat-form-field>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="full-width">
                 <input matInput formControlName="longitude" placeholder="Longitude">
               </mat-form-field>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="full-width">
                 <textarea matInput formControlName="description" placeholder="Description"></textarea>
               </mat-form-field>
             </p>

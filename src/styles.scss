@@ -3,7 +3,6 @@
 $navy-blue: #001525;
 $dull-blue: #203f57;
 $navy-blue-faded: #0015258e;
-
 body {
   background-color: rgb(179, 202, 209);
   margin-top: 60px;
@@ -14,6 +13,7 @@ body {
 .container {
   padding: 20px 40px;
 }
+
 .more-button {
   position: absolute;
   top: 5px;
@@ -34,20 +34,16 @@ mat-card {
   &.column-card {
     color: $navy-blue;
     background-color: rgb(223, 234, 238);
-
     &.left {
       padding-top: 10px;
     }
-
     &.right {
       padding: 0;
-
       .mat-card-header-text {
         margin: 0;
       }
     }
   }
-
   mat-card-header {
     margin-bottom: 10px;
   }
@@ -62,12 +58,10 @@ mat-card-content.content {
 .place-card {
   margin-bottom: 15px;
   padding: 10px;
-
-  ul > li {
+  ul>li {
     font-size: 12px;
     line-height: 160%;
     color: $navy-blue;
-
     .label {
       color: #888;
     }
@@ -85,16 +79,23 @@ mat-tab-group {
     .tab-content {
       padding: 30px;
       line-height: 160%;
-
       .example-form {
         min-width: 150px;
         max-width: 500px;
         width: 100%;
       }
-
-      .example-full-width {
-        width: 100%;
-      }
     }
   }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.solid {
+  font-weight: bold;
+}
+
+.upside-down {
+  transform: scaleY(-1);
 }

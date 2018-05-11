@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Observable } from 'rxjs'
+import { Observable, Observer, Subject } from 'rxjs'
 import { Place } from '../interfaces/place'
 import { isArray } from '../helpers/isArray'
 
@@ -12,6 +12,7 @@ import { isArray } from '../helpers/isArray'
 export class CreateComponent implements OnInit {
   @Input() placesForDropdown$: Observable<Place[]>
   @Input() selectedPlace$: Observable<Place[] | Place>
+  @Input() placesSubject: Subject<string>
 
   // @Input() selectedLocation$: Observable<Location>
 
@@ -27,7 +28,6 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
     this.createForm()
     this.listenToSelect()
-    // this.subscribeToSelectedLocation()
   }
 
   createForm(): void {

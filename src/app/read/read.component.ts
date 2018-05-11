@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
-import { Observable } from 'rxjs'
+import { Observable, Observer, Subject } from 'rxjs'
 import { Place } from '../interfaces/place'
 
 @Component({
@@ -9,10 +9,11 @@ import { Place } from '../interfaces/place'
   styleUrls: ['./read.component.css']
 })
 export class ReadComponent implements OnInit {
-  @Input() placesForDropdown$: Observable<Place[]>
+  @Input() state
+  @Input() placesSubject: Subject<string>
   @Input() places$: Observable<Place[] | Place>
-  @Output() updateSelect = new EventEmitter<string>()
-  @Output() updateSearch = new EventEmitter<string>()
+  @Input() loadingError$: Observable<string>
+  @Output() toggleSortOrder = new EventEmitter<boolean>()
 
   select = new FormControl()
   search = new FormControl()
@@ -24,14 +25,11 @@ export class ReadComponent implements OnInit {
   }
 
   listenToFormEvents() {
-    this.select.valueChanges.forEach((query: string) => {
-      // this.search.reset()
-      this.updateSelect.emit(query)
-    })
+    this.select.valueChanges.subscribe(this.placesSubject)
+    this.search.valueChanges.subscribe(this.placesSubject)
+  }
 
-    this.search.valueChanges.forEach((query: string) => {
-      this.select.reset()
-      this.updateSearch.emit(query)
-    })
+  onSortClick(event) {
+    this.toggleSortOrder.emit(this.state.sortDescending)
   }
 }

@@ -5,10 +5,9 @@
     <div fxLayout="row" fxLayoutAlign="end center" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" class="column">
 
       <div fxFlex="45">
+        <ng-container *ngIf="(places$ | async) as places">
 
-        <ng-container *ngIf="(placesForDropdown$ | async) as places">
-
-          <mat-select [formControl]="select" class="places-select" placeholder="Choose Location">
+          <mat-select [formControl]="select" class="places-select full-width" placeholder="Choose Location">
             <mat-option>
               All Locations
             </mat-option>
@@ -39,10 +38,14 @@
 
   <mat-card-content class="content">
 
-
     <ng-container *ngIf="(places$ | async) as places; else loadingOrError">
 
-      {{ places }}
+      <button mat-icon-button (click)="onSortClick()">
+        <mat-icon [ngClass]="{'upside-down': state.sortDescending}" aria-label="Icon button with a line pyramid">filter_list</mat-icon>
+      </button>
+
+      {{ places.length }} {{places.length === 1 ? 'result' : 'results'}}
+
       <mat-card *ngFor="let place of places" class="place-card">
 
         <mat-card-header>
@@ -70,13 +73,13 @@
 
       </mat-card>
 
-
     </ng-container>
 
     <ng-template #loadingOrError>
 
       <ng-container *ngIf="(loadingError$ | async) as error; else loadingTemplate">
-        No location found named "{{ error }}".
+        Your search for
+        <span class="solid">"{{ error }}"</span> did not match any locations.
       </ng-container>
 
       <ng-template #loadingTemplate>
