@@ -48,13 +48,22 @@
 
       <mat-card *ngFor="let place of places" class="place-card">
 
+        <button mat-icon-button class="more-button" aria-label="Toggle menu">
+          <mat-icon>edit</mat-icon>
+        </button>
+
         <mat-card-header>
           <mat-card-title>
-            {{ place.locationName }}
-            <div class="description">
-              {{ place.description }}
-            </div>
+
+            <span fxFlex="30">
+              {{ place.locationName }}
+              <div class="description">
+                {{ place.description }}
+              </div>
+            </span>
+
           </mat-card-title>
+
         </mat-card-header>
 
         <mat-card-content class="content">

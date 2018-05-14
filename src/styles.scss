@@ -14,12 +14,6 @@ body {
   padding: 20px 40px;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
 .navy {
   color: $navy-blue;
 }
@@ -66,12 +60,21 @@ mat-card-content.content {
       color: #888;
     }
   }
-}
-
-.description {
-  font-size: 12px;
-  color: #777;
-  margin-top: 10px;
+  .mat-card-header-text {
+    width: 100%;
+  }
+  .description {
+    font-size: 12px;
+    color: #777;
+    margin-top: 10px;
+  }
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #999;
+    transform: scale(0.75, 0.75);
+  }
 }
 
 mat-tab-group {
