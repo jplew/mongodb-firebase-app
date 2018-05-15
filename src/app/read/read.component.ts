@@ -14,6 +14,7 @@ export class ReadComponent implements OnInit {
   @Input() places$: Observable<Place[] | Place>
   @Input() loadingError$: Observable<string>
   @Output() toggleSortOrder = new EventEmitter<boolean>()
+  @Output() editRecord = new EventEmitter<Place>()
 
   select = new FormControl()
   search = new FormControl()
@@ -31,5 +32,9 @@ export class ReadComponent implements OnInit {
 
   onSortClick(event) {
     this.toggleSortOrder.emit(this.state.sortDescending)
+  }
+
+  onEditClick(place: Place) {
+    this.editRecord.emit(place)
   }
 }

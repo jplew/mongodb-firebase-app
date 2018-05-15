@@ -23,6 +23,9 @@ export class AppComponent {
   placesSource = new BehaviorSubject<Place[] | Place>(null)
   places$: Observable<Place[] | Place> = this.placesSource.asObservable()
 
+  selectedPlaceSource = new BehaviorSubject<Place>(null)
+  selectedPlace$: Observable<Place> = this.selectedPlaceSource.asObservable()
+
   places: Place[] | Place
 
   placesSubject = new Subject<string>()
@@ -78,12 +81,6 @@ export class AppComponent {
     })
   }
 
-  updateFromSave(query) {
-    this.placeService.getAll().subscribe(next => {
-      this.placesSource.next(next)
-    })
-  }
-
   swapOrder(value: boolean) {
     this.state = {
       sortDescending: !value
@@ -92,5 +89,15 @@ export class AppComponent {
     this.places$ = this.places$.pipe(
       sortAlphabetical(this.state.sortDescending)
     )
+  }
+
+  editRecord(place: Place) {
+    this.selectedPlaceSource.next(place)
+  }
+
+  sendPutRequest(body: Place) {
+    this.placeService.updateLocation(body).subscribe(updatedPlace => {
+      console.log('Location updated successfully', updatedPlace)
+    })
   }
 }

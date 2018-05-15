@@ -19,7 +19,7 @@
             </mat-select>
           </ng-container>
 
-          <form [formGroup]="placeForm" class="example-form">
+          <form #myForm [formGroup]="placeForm" class="update-form" (ngSubmit)="onSubmit()">
             <p>
               <mat-form-field class="full-width">
                 <input matInput formControlName="locationName" placeholder="Location Name">
@@ -35,7 +35,9 @@
               </mat-form-field>
             </p>
 
-            <button mat-raised-button color="primary">Save</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="placeForm.pristine">Save</button>
+
+            <button type="button" mat-button class="btn-revert" (click)="revert()" [disabled]="placeForm.pristine">Revert</button>
 
           </form>
         </div>

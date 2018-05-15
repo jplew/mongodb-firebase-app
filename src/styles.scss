@@ -52,7 +52,7 @@ mat-card-content.content {
 .place-card {
   margin-bottom: 15px;
   padding: 10px;
-  ul>li {
+  ul > li {
     font-size: 12px;
     line-height: 160%;
     color: $navy-blue;
@@ -82,10 +82,13 @@ mat-tab-group {
     .tab-content {
       padding: 30px;
       line-height: 160%;
-      .example-form {
+      .update-form {
         min-width: 150px;
         max-width: 500px;
         width: 100%;
+        .btn-revert {
+          margin-left: 15px;
+        }
       }
     }
   }

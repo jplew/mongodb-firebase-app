@@ -5,12 +5,12 @@
   <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" class="coloredcontainer box">
 
     <div fxFlex>
-      <app-read [state]="state" [placesSubject]="placesSubject" [places$]="places$" [loadingError$]="loadingError$" (toggleSortOrder)="swapOrder($event)"></app-read>
+      <app-read [state]="state" [placesSubject]="placesSubject" [places$]="places$" [loadingError$]="loadingError$" (editRecord)="editRecord($event)"
+        (toggleSortOrder)="swapOrder($event)"></app-read>
     </div>
 
     <div fxFlex>
-      <app-create [selectedPlace$]="places$" [placesSubject]="placesSubject" (updateSave)="updateFromSave($event)
-      ">
+      <app-create [selectedPlace$]="selectedPlace$" (updatePlace)="sendPutRequest($event)">
       </app-create>
     </div>
 
