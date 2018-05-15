@@ -6,11 +6,11 @@
 
     <div fxFlex>
       <app-read [state]="state" [placesSubject]="placesSubject" [places$]="places$" [loadingError$]="loadingError$" (editRecord)="editRecord($event)"
-        (toggleSortOrder)="swapOrder($event)"></app-read>
+        (deleteRecord)="sendDeleteRequest($event)" (toggleSortOrder)="swapOrder($event)"></app-read>
     </div>
 
     <div fxFlex>
-      <app-create [selectedPlace$]="selectedPlace$" (updatePlace)="sendPutRequest($event)">
+      <app-create [selectedPlace$]="selectedPlace$" (createPlace)="sendPostRequest($event)" (updatePlace)="sendPutRequest($event)">
       </app-create>
     </div>
 

@@ -1,25 +1,13 @@
 <mat-card class="column-card right">
   <mat-card-content class="content">
 
-    <mat-tab-group class="tab-group" backgroundColor="primary" color="accent" mat-stretch-tabs>
+
+    <mat-tab-group [(selectedIndex)]="activeTabIndex" class="tab-group" color="primary" mat-stretch-tabs>
 
       <mat-tab label="Update">
         <div class="tab-content">
 
-          <ng-container *ngIf="(placesForDropdown$ | async) as places">
-
-            <mat-select [formControl]="select" class="places-select" placeholder="Choose Location to Update">
-
-              <mat-option>
-                All Locations
-              </mat-option>
-              <mat-option *ngFor="let place of places" [value]="place.locationName">
-                {{ place.locationName }}
-              </mat-option>
-            </mat-select>
-          </ng-container>
-
-          <form #myForm [formGroup]="placeForm" class="update-form" (ngSubmit)="onSubmit()">
+          <form [formGroup]="updateForm" class="update-form" (ngSubmit)="submitUpdate()">
             <p>
               <mat-form-field class="full-width">
                 <input matInput formControlName="locationName" placeholder="Location Name">
@@ -35,9 +23,9 @@
               </mat-form-field>
             </p>
 
-            <button type="submit" mat-raised-button color="primary" [disabled]="placeForm.pristine">Save</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="updateForm.pristine">Update</button>
 
-            <button type="button" mat-button class="btn-revert" (click)="revert()" [disabled]="placeForm.pristine">Revert</button>
+            <button type="button" mat-button class="btn-revert" (click)="revert()" [disabled]="updateForm.pristine">Revert</button>
 
           </form>
         </div>
@@ -45,10 +33,26 @@
 
       <mat-tab label="Create">
         <div class="tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
-          vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
-          felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum
-          enim, vel tempor sapien arcu a tellus.
+          <form [formGroup]="createForm" class="create-form" (ngSubmit)="submitCreate()">
+            <p>
+              <mat-form-field class="full-width">
+                <input matInput formControlName="locationName" placeholder="Location Name">
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <input matInput formControlName="latitude" placeholder="Latitude">
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <input matInput formControlName="longitude" placeholder="Longitude">
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <textarea matInput formControlName="description" placeholder="Description"></textarea>
+              </mat-form-field>
+            </p>
+
+            <button type="submit" mat-raised-button color="primary" [disabled]="createForm.pristine">Create</button>
+
+          </form>
+
         </div>
       </mat-tab>
 

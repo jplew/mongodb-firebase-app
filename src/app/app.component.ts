@@ -19,18 +19,13 @@ import { sortAlphabetical } from './helpers/sortAlphabetical'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  placesForDropdown$: Observable<Place[]>
   placesSource = new BehaviorSubject<Place[] | Place>(null)
   places$: Observable<Place[] | Place> = this.placesSource.asObservable()
 
-  selectedPlaceSource = new BehaviorSubject<Place>(null)
-  selectedPlace$: Observable<Place> = this.selectedPlaceSource.asObservable()
-
-  places: Place[] | Place
-
   placesSubject = new Subject<string>()
 
-  place$: Observable<Place>
+  selectedPlaceSource = new BehaviorSubject<Place>(null)
+  selectedPlace$: Observable<Place> = this.selectedPlaceSource.asObservable()
 
   loadingError$ = new Subject<string>()
 
@@ -39,15 +34,17 @@ export class AppComponent {
   }
 
   constructor(private placeService: PlaceService) {
-    this.placesForDropdown$ = this.placeService.getAll()
+    this.fetchAllLocations()
+    this.subscribeToSearchBox()
+  }
+
+  fetchAllLocations(): void {
     this.placeService
       .getAll()
       .pipe(sortAlphabetical(this.state.sortDescending))
       .subscribe(next => {
         this.placesSource.next(next)
       })
-
-    this.subscribeToSearchBox()
   }
 
   subscribeToSearchBox() {
@@ -72,7 +69,6 @@ export class AppComponent {
                 .indexOf(query.toLowerCase()) !== -1
           )
           if (!hits.length) {
-            // this.places$ = null
             this.loadingError$.next(query)
           }
           return hits
@@ -95,9 +91,34 @@ export class AppComponent {
     this.selectedPlaceSource.next(place)
   }
 
+  sendDeleteRequest(place: Place) {
+    this.placeService.deleteLocation(place).subscribe(
+      next => {
+        console.log('Location deleted successfully')
+        this.fetchAllLocations()
+      },
+      () => {
+        console.log('completed')
+      }
+    )
+  }
+
+  sendPostRequest(body: Place) {
+    this.placeService.createLocation(body).subscribe(
+      createdPlace => {
+        console.log('Location created successfully')
+        this.fetchAllLocations()
+      },
+      err => {
+        console.error('error', err)
+      }
+    )
+  }
+
   sendPutRequest(body: Place) {
     this.placeService.updateLocation(body).subscribe(updatedPlace => {
-      console.log('Location updated successfully', updatedPlace)
+      console.log('Location updated successfully')
+      this.fetchAllLocations()
     })
   }
 }

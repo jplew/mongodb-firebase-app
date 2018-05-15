@@ -11,25 +11,33 @@ import { filter } from 'rxjs/operators'
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  @Input() placesForDropdown$: Observable<Place[]>
   @Input() selectedPlace$: Observable<Place>
-  @Input() placesSubject: Subject<string>
 
   @Output() updatePlace = new EventEmitter<Place>()
+  @Output() createPlace = new EventEmitter<Place>()
 
-  placeForm: FormGroup
+  activeTabIndex = 0
+  updateForm: FormGroup
+  createForm: FormGroup
 
   select = new FormControl()
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.createForm()
+    this.initForm()
     this.subscribeToSelectedLocation()
   }
 
-  createForm(): void {
-    this.placeForm = this.fb.group({
+  initForm(): void {
+    this.updateForm = this.fb.group({
+      locationName: ['', Validators.required],
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
+      description: ['', Validators.required]
+    })
+
+    this.createForm = this.fb.group({
       locationName: ['', Validators.required],
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
@@ -41,19 +49,32 @@ export class CreateComponent implements OnInit {
     this.selectedPlace$
       .pipe(filter(next => !!next))
       .subscribe((next: Place) => {
-        this.placeForm.get('locationName').setValue(next.locationName)
-        this.placeForm.get('latitude').setValue(next.latitude)
-        this.placeForm.get('longitude').setValue(next.longitude)
-        this.placeForm.get('description').setValue(next.description)
+        this.activeTabIndex = 0
+        this.updateForm.get('locationName').setValue(next.locationName)
+        this.updateForm.get('locationName').disable()
+        this.updateForm.get('latitude').setValue(next.latitude)
+        this.updateForm.get('longitude').setValue(next.longitude)
+        this.updateForm.get('description').setValue(next.description)
       })
   }
 
-  onSubmit() {
-    console.log('form was submitted', this.placeForm.value)
-    this.updatePlace.emit(this.placeForm.value)
+  submitUpdate() {
+    this.updateForm.get('locationName').enable()
+    this.updatePlace.emit(this.updateForm.value)
+    this.updateForm.reset()
+  }
+
+  submitCreate() {
+    this.createPlace.emit(this.createForm.value)
+    this.updateForm.reset()
   }
 
   revert() {
-    console.log('reverting')
+    this.selectedPlace$.subscribe((next: Place) => {
+      this.updateForm.get('locationName').setValue(next.locationName)
+      this.updateForm.get('latitude').setValue(next.latitude)
+      this.updateForm.get('longitude').setValue(next.longitude)
+      this.updateForm.get('description').setValue(next.description)
+    })
   }
 }

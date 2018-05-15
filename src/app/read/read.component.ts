@@ -15,6 +15,7 @@ export class ReadComponent implements OnInit {
   @Input() loadingError$: Observable<string>
   @Output() toggleSortOrder = new EventEmitter<boolean>()
   @Output() editRecord = new EventEmitter<Place>()
+  @Output() deleteRecord = new EventEmitter<Place>()
 
   select = new FormControl()
   search = new FormControl()
@@ -34,7 +35,11 @@ export class ReadComponent implements OnInit {
     this.toggleSortOrder.emit(this.state.sortDescending)
   }
 
-  onEditClick(place: Place) {
+  editLocation(place: Place) {
     this.editRecord.emit(place)
+  }
+
+  deleteLocation(place: Place) {
+    this.deleteRecord.emit(place)
   }
 }

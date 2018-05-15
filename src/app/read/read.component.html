@@ -48,9 +48,15 @@
 
       <mat-card *ngFor="let place of places" class="place-card">
 
-        <button (click)="onEditClick(place)" mat-icon-button class="more-button" aria-label="Toggle menu">
-          <mat-icon>edit</mat-icon>
-        </button>
+
+        <div class="more-button">
+          <button (click)="editLocation(place)" mat-icon-button aria-label="Edit Location">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)="deleteLocation(place)" mat-icon-button aria-label="Delete Location">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
 
         <mat-card-header>
           <mat-card-title>

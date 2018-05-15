@@ -7,12 +7,13 @@ import { Injectable } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { Place } from '../interfaces/place'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlaceService {
-  baseUrl = 'https://us-central1-mongodb-api.cloudfunctions.net/api/places/'
+  baseUrl = environment.placesApiUrl
 
   currentRecord: Place
 
@@ -34,19 +35,27 @@ export class PlaceService {
 
   createLocation(place: Place): Observable<Place> {
     this.currentRecord = place
-    console.log('sending update request to server')
+    console.log('sending post request to server')
     // return of(place)
     return this.http
-      .put<Place>(this.baseUrl + place.locationName, place)
+      .post<Place>(this.baseUrl, place, this.httpOptions)
       .pipe(catchError(error => this.handleError(error)))
   }
 
   updateLocation(place: Place): Observable<Place> {
     this.currentRecord = place
-    console.log('sending update request to server', place)
+    console.log('sending put request to server', place)
     // return of(place)
     return this.http
       .put<Place>(this.baseUrl + place.locationName, place, this.httpOptions)
+      .pipe(catchError(error => this.handleError(error)))
+  }
+
+  deleteLocation(place: Place): Observable<{}> {
+    console.log('sending post request to server', place)
+
+    return this.http
+      .delete<Place>(this.baseUrl + place.locationName, this.httpOptions)
       .pipe(catchError(error => this.handleError(error)))
   }
 
