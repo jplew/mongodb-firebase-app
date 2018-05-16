@@ -36,6 +36,11 @@ export class ReadComponent implements OnInit {
   }
 
   editLocation(place: Place) {
+    try {
+      window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+    } catch (e) {
+      window.scrollTo(0, 0)
+    }
     this.editRecord.emit(place)
   }
 

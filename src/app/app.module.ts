@@ -10,17 +10,23 @@ import {
   MatMenuModule,
   MatSelectModule,
   MatTabsModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatDialogModule
 } from '@angular/material'
 import { MatInputModule } from '@angular/material/input'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { AppComponent } from './app.component'
+import { AppComponent, ConfirmDeleteComponent } from './app.component'
 import { CreateComponent } from './create/create.component'
 import { ReadComponent } from './read/read.component'
 
 @NgModule({
-  declarations: [AppComponent, ReadComponent, CreateComponent],
+  declarations: [
+    AppComponent,
+    ReadComponent,
+    CreateComponent,
+    ConfirmDeleteComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -35,8 +41,10 @@ import { ReadComponent } from './read/read.component'
     MatSelectModule,
     MatInputModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule
   ],
+  entryComponents: [ConfirmDeleteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

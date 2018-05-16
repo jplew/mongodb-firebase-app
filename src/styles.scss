@@ -1,21 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
-
 $navy-blue: #001525;
 $dull-blue: #203f57;
 $navy-blue-faded: #0015258e;
 body {
   background-color: rgb(179, 202, 209);
-  margin-top: 60px;
+  margin: 30px 0 60px;
   color: $navy-blue;
   letter-spacing: 0.01em;
 }
 
 .container {
-  padding: 20px 40px;
+  padding: 40px 40px;
 }
 
 .navy {
   color: $navy-blue;
+}
+
+.header,
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  a {
+    margin-left: 15px;
+  }
 }
 
 .container {
@@ -52,7 +60,7 @@ mat-card-content.content {
 .place-card {
   margin-bottom: 15px;
   padding: 10px;
-  ul > li {
+  ul>li {
     font-size: 12px;
     line-height: 160%;
     color: $navy-blue;
@@ -72,8 +80,16 @@ mat-card-content.content {
     position: absolute;
     top: 5px;
     right: 5px;
-    color: #999;
-    transform: scale(0.75, 0.75);
+    color: #999; // transform: scale(0.75, 0.75);
+    margin: 0;
+  }
+  .mat-icon.mat-icon-inline {
+    font-size: 16px;
+  }
+  .mat-icon-button {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
   }
 }
 
@@ -86,9 +102,12 @@ mat-tab-group {
         min-width: 150px;
         max-width: 500px;
         width: 100%;
-        .btn-revert {
-          margin-left: 15px;
-        }
+      }
+      .btn-revert {
+        margin-left: 15px;
+      }
+      .mat-form-field {
+        margin-bottom: 15px;
       }
     }
   }
@@ -104,4 +123,9 @@ mat-tab-group {
 
 .upside-down {
   transform: scaleY(-1);
+}
+
+.dialog-content,
+.mat-dialog-actions {
+  margin-bottom: 20px;
 }

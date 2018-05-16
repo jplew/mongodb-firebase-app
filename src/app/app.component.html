@@ -1,16 +1,29 @@
 <div class="container">
 
-  <h1 class="mat-h1">Dashboard</h1>
+  <div class="header">
+    <h1 class="mat-h1">Angular & Angular Material CRUD Interface</h1>
+    <div class="nav-links">
+      <h5 class="mat-h5">
+        <a href="{{appGithubUrl}}">App Github Repo</a>
+      </h5>
+      <h5 class="mat-h5">
+        <a href="{{apiGithubUrl}}">API Github Repo</a>
+      </h5>
+      <h5 class="mat-h5">
+        <a href="{{placesApiUrl}}">API Endpoint</a>
+      </h5>
+    </div>
+  </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" class="coloredcontainer box">
 
     <div fxFlex>
       <app-read [state]="state" [placesSubject]="placesSubject" [places$]="places$" [loadingError$]="loadingError$" (editRecord)="editRecord($event)"
-        (deleteRecord)="sendDeleteRequest($event)" (toggleSortOrder)="swapOrder($event)"></app-read>
+        (deleteRecord)="deleteRecord($event)" (toggleSortOrder)="swapOrder($event)"></app-read>
     </div>
 
     <div fxFlex>
-      <app-create [selectedPlace$]="selectedPlace$" (createPlace)="sendPostRequest($event)" (updatePlace)="sendPutRequest($event)">
+      <app-create [formReset$]="formReset$" [selectedPlace$]="selectedPlace$" (createPlace)="sendPostRequest($event)" (updatePlace)="sendPutRequest($event)">
       </app-create>
     </div>
 

@@ -7,25 +7,31 @@
       <mat-tab label="Update">
         <div class="tab-content">
 
-          <form [formGroup]="updateForm" class="update-form" (ngSubmit)="submitUpdate()">
-            <p>
-              <mat-form-field class="full-width">
-                <input matInput formControlName="locationName" placeholder="Location Name">
-              </mat-form-field>
-              <mat-form-field class="full-width">
-                <input matInput formControlName="latitude" placeholder="Latitude">
-              </mat-form-field>
-              <mat-form-field class="full-width">
-                <input matInput formControlName="longitude" placeholder="Longitude">
-              </mat-form-field>
-              <mat-form-field class="full-width">
-                <textarea matInput formControlName="description" placeholder="Description"></textarea>
-              </mat-form-field>
-            </p>
+          <form [formGroup]="updateForm" class="update-form">
 
-            <button type="submit" mat-raised-button color="primary" [disabled]="updateForm.pristine">Update</button>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="locationName" placeholder="Location Name">
+              <mat-error *ngIf="update.locationName.invalid">{{getNameError(update.locationName)}}</mat-error>
+            </mat-form-field>
 
-            <button type="button" mat-button class="btn-revert" (click)="revert()" [disabled]="updateForm.pristine">Revert</button>
+            <mat-form-field class="full-width">
+              <textarea matInput formControlName="description" placeholder="Description"></textarea>
+              <mat-error *ngIf="update.description.invalid">{{getDescriptionError(update.description)}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <input matInput id="latitude" formControlName="latitude" placeholder="Latitude">
+              <mat-error *ngIf="update.latitude.invalid">{{getRangeError(update.latitude, -90, 90)}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <input matInput formControlName="longitude" placeholder="Longitude">
+              <mat-error *ngIf="update.longitude.invalid">{{getRangeError(update.longitude, -180, 180)}}</mat-error>
+            </mat-form-field>
+
+            <button type="button" mat-raised-button (click)="submitUpdate()" color="primary" [disabled]="updateForm.pristine || updateForm.invalid">Update</button>
+
+            <button type="button" mat-button class="btn-revert" (click)="revert()" [disabled]="updateForm.untouched">Revert</button>
 
           </form>
         </div>
@@ -33,23 +39,33 @@
 
       <mat-tab label="Create">
         <div class="tab-content">
-          <form [formGroup]="createForm" class="create-form" (ngSubmit)="submitCreate()">
+          <form [formGroup]="createForm" class="create-form">
             <p>
               <mat-form-field class="full-width">
                 <input matInput formControlName="locationName" placeholder="Location Name">
+                <mat-error *ngIf="create.locationName.invalid">{{getNameError(create.locationName)}}</mat-error>
               </mat-form-field>
-              <mat-form-field class="full-width">
-                <input matInput formControlName="latitude" placeholder="Latitude">
-              </mat-form-field>
-              <mat-form-field class="full-width">
-                <input matInput formControlName="longitude" placeholder="Longitude">
-              </mat-form-field>
+
               <mat-form-field class="full-width">
                 <textarea matInput formControlName="description" placeholder="Description"></textarea>
+                <mat-error *ngIf="create.description.invalid">{{getDescriptionError(create.description)}}</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                <input matInput formControlName="latitude" placeholder="Latitude">
+                <mat-error *ngIf="create.latitude.invalid">{{getRangeError(create.latitude, -90, 90)}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                <input matInput formControlName="longitude" placeholder="Longitude">
+                <mat-error *ngIf="create.longitude.invalid">{{getRangeError(create.longitude, -180, 180)}}</mat-error>
               </mat-form-field>
             </p>
 
-            <button type="submit" mat-raised-button color="primary" [disabled]="createForm.pristine">Create</button>
+            <button (click)="submitCreate()" type="button" mat-raised-button color="primary" [disabled]="createForm.pristine || createForm.invalid">Create</button>
+
+            <button type="button" mat-button class="btn-revert" (click)="resetCreateForm()" [disabled]="createForm.untouched">Reset</button>
 
           </form>
 
