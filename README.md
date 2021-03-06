@@ -1,27 +1,28 @@
-# FirebaseAppNew
+# Angular & Angular Material CRUD Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+This is a single-page Angular 6 app designed to consume a simple REST API.
 
-## Development server
+Live Demo: [https://mongodb-angular-app.web.app](https://mongodb-angular-app.web.app)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Visitors have full read/write access, so feel free to play around. Just don't write any bad words or delete all the locations. :)
 
-## Code scaffolding
+The front-end is completely decoupled from its back-end counterpart, which can be found here: [https://github.com/jplew/mongodb-firebase-api](https://github.com/jplew/mongodb-firebase-api)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- Uses RxJS 6 pipeable operators
+- UI components courtesy of Angular Material 11
+- Responsive layout with Angular Flex-Layout
+- Features filtering via a search box or a drop-down menu
+- Results are sortable alphabetically by name
+- PUT and POST requests update the listing dynamically in real-time
+- Uses extensive client-side form validation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Local Dev Server
 
-## Running unit tests
+This project was created with Angular-CLI 6. Do the following to run it on your own machine:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1.  Clone the repo.
+2.  Run `npm install`
+3.  Run `npm start`
+4.  Navigate to `http://localhost:4200/`
