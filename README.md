@@ -1,32 +1,27 @@
-# Angular & Angular Material CRUD Interface
+# FirebaseAppNew
 
-This is a single-page Angular 6 app designed to consume a simple REST API.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
-Live Demo: [https://mongodb-api.firebaseapp.com/](https://mongodb-api.firebaseapp.com/)
+## Development server
 
-Visitors have full read/write access, so feel free to play around. Just don't write any bad words or delete all the locations. :)
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-The front-end is completely decoupled from its back-end counterpart, which can be found here: [https://github.com/jplew/mongodb-firebase-api](https://github.com/jplew/mongodb-firebase-api)
+## Code scaffolding
 
-## Features
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-* Uses RxJS 6 pipeable operators
-* UI components courtesy of Angular Material 6
-* Responsive layout with Angular Flex-Layout
-* Features filtering via a search box or a drop-down menu
-* Results are sortable alphabetically by name
-* PUT and POST requests update the listing dynamically in real-time
-* Uses extensive client-side form validation
+## Build
 
-## Local Deployment Instructions
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-This project was created with Angular-CLI 6. Do the following to run it on your own machine:
+## Running unit tests
 
-1.  Clone the repo.
-2.  Run `npm install`
-3.  Run `npm start`
-4.  Navigate to `http://localhost:4200/`
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### Questions or Comments
+## Running end-to-end tests
 
-email: jp@kriyate.co
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

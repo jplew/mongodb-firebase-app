@@ -1,31 +1,52 @@
 <div class="container">
-
   <div class="header">
-    <h1 class="mat-h1">Angular & Angular Material CRUD Interface</h1>
+    <div>
+      <h1 class="mat-h1">MEAN CRUD App</h1>
+      <div>
+        This app is an Angular 11 SPA client which performs all CRUD operations
+        (create, read, update, delete) on a public Mongo database.
+      </div>
+    </div>
     <div class="nav-links">
       <h5 class="mat-h5">
-        <a href="{{appGithubUrl}}">App Github Repo</a>
+        <a href="{{ appGithubUrl }}">App Github Repo</a>
       </h5>
       <h5 class="mat-h5">
-        <a href="{{apiGithubUrl}}">API Github Repo</a>
+        <a href="{{ apiGithubUrl }}">API Github Repo</a>
       </h5>
       <h5 class="mat-h5">
-        <a href="{{placesApiUrl}}">API Endpoint</a>
+        <a href="{{ placesApiUrl }}">Public API Endpoint</a>
       </h5>
     </div>
   </div>
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" class="coloredcontainer box">
-
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayoutGap="20px"
+    class="coloredcontainer box"
+  >
     <div fxFlex>
-      <app-read [state]="state" [placesSubject]="placesSubject" [places$]="places$" [loadingError$]="loadingError$" (editRecord)="editRecord($event)"
-        (deleteRecord)="deleteRecord($event)" (toggleSortOrder)="swapOrder($event)"></app-read>
+      <app-read
+        [state]="state"
+        [placesSubject]="placesSubject"
+        [places$]="places$"
+        [loadingError$]="loadingError$"
+        (editRecord)="editRecord($event)"
+        (deleteRecord)="deleteRecord($event)"
+        (toggleSortOrder)="swapOrder($event)"
+      ></app-read>
     </div>
 
     <div fxFlex>
-      <app-create [formReset$]="formReset$" [selectedPlace$]="selectedPlace$" (createPlace)="sendPostRequest($event)" (updatePlace)="sendPutRequest($event)">
+      <app-create
+        [formReset$]="formReset$"
+        [selectedPlace$]="selectedPlace$"
+        (createPlace)="sendPostRequest($event)"
+        (updatePlace)="sendPutRequest($event)"
+      >
       </app-create>
     </div>
-
   </div>
 </div>

@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "mongodb-api"
+    "default": "mongodb-angular-app"
   }
 }
