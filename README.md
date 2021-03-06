@@ -1,6 +1,6 @@
 # Angular & Angular Material CRUD Client
 
-This is a single-page Angular 6 app designed to consume a simple REST API.
+This is a single-page Angular 11 app designed to consume a simple REST API.
 
 Live Demo: [https://mongodb-angular-app.web.app](https://mongodb-angular-app.web.app)
 
