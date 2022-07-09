@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   placesApiUrl:
-    'https://us-central1-mongodb-api.cloudfunctions.net/api/places/',
+    'https://crudapp.fly.dev/places/',
   appGithubUrl: 'https://github.com/jplew/mongodb-firebase-app',
   apiGithubUrl: 'https://github.com/jplew/mongodb-firebase-api'
 }
